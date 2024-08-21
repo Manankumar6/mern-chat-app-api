@@ -71,7 +71,7 @@ const createGroupChat = async (req,res)=>{
         return res.status(400).json({success:false,message:"Please fill all the feilds"})
     }
     let users = JSON.parse(req.body.users);
-    if(users.length > 2){
+    if(users.length < 2){
         return res.status(400).json({success:false,message:"More than 2 users are required to from a group chat "})
     }
     users.push(req.user);
@@ -113,7 +113,7 @@ const addToGroup = async(req,res)=>{
         res.status(400).json({success:false})
 
     }
-    res.status(200).json({success:true,added})
+    res.status(200).json(added)
 }
 const removeFromGroup = async(req,res)=>{
     const {chatId,userId} = req.body;
@@ -123,6 +123,6 @@ const removeFromGroup = async(req,res)=>{
         res.status(400).json({success:false})
 
     }
-    res.status(200).json({success:true,remove})
+    res.status(200).json(remove)
 }
 module.exports = {accessChat,fetchChats,createGroupChat,renameGroup,addToGroup,removeFromGroup}
