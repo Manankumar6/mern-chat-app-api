@@ -4,7 +4,7 @@ const generateToken = require('../token/token');
 const signup = async (req, res,next) => {
     try {
 
-        console.log(req.body)
+       
         const { name, email, password, pic } = req.body;
         if (!name || !email || !password) {
             res.status(400).json({ success: false, message: "Invaild Credentials" })
@@ -50,7 +50,7 @@ const login = async (req, res) => {
         }
         const token = generateToken(user._id);
         // If the user is found and the password is valid, return a success response
-        res.status(200).json({ success: true, name: user.name, email: user.email,pic:user.pic,token });
+        res.status(200).json({ success: true,_id:user._id, name: user.name, email: user.email,pic:user.pic,token });
     } catch (error) {
         console.log(error);
         res.status(500).json({ success: false, message: "Server error" });
