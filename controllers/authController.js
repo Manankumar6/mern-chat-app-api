@@ -19,9 +19,7 @@ const signup = async (req, res,next) => {
         const token = generateToken(user._id);
 
         // Add the token to the user object or send it separately in the response
-        res.status(200).json({
-            success: true,
-            user: { ...user.toObject(), token }
+        res.status(200).json({success: true, _id:user._id, name: user.name, email: user.email,pic:user.pic,token
         });
     } catch (error) {
         next(error)
